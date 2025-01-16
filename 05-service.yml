@@ -38,7 +38,20 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-lb
+spec:
+  type: LoadBalancer
+  selector:
+    appName: nginx
+    demoFor: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
 
 
 
