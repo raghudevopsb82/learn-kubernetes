@@ -1,0 +1,61 @@
+# Install Helm first
+# sudo labauto helm
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-base
+  labels:
+    appName: nginx
+    demoFor: ingress
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.19
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd-base
+  labels:
+    appName: httpd
+    demoFor: ingress
+spec:
+  containers:
+  - name: httpd
+    image: httpd
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-base
+spec:
+  selector:
+    appName: nginx
+    demoFor: ingress
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpd-base
+spec:
+  selector:
+    appName: httpd
+    demoFor: ingress
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+
+
+
