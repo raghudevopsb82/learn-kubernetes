@@ -4,6 +4,8 @@ metadata:
   name: cm-demo
 data:
   URL: google.com
+  domain: www.google.com
+  company: google
 ---
 apiVersion: v1
 kind: Pod
@@ -19,7 +21,18 @@ spec:
           configMapKeyRef:
             name: cm-demo           # The ConfigMap this value comes from.
             key: URL # The key to fetch.
-
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-demo-2
+spec:
+  containers:
+  - name: debug
+    image: rkalluru/debug
+    envFrom:
+      - configMapRef:
+          name: cm-demo
 
 
 
