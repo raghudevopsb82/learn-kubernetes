@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-demo
+spec:
+  containers:
+  - name: debug
+    image: rkalluru/debug
+    env:
+      - name: URL
+        value: google.com
+
+
+
+
