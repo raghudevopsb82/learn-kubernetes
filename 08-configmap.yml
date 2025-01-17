@@ -34,7 +34,23 @@ spec:
       - configMapRef:
           name: cm-demo
 
-
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-demo-3
+spec:
+  containers:
+  - name: debug
+    image: rkalluru/debug
+    volumeMounts:
+    - name: cm
+      mountPath: "/data"
+      readOnly: true
+  volumes:
+  - name: cm
+    configMap:
+      name: cm-demo
 
 
 
