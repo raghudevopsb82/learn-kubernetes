@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-demo
+data:
+  URL: google.com
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-demo-1
+spec:
+  containers:
+  - name: debug
+    image: rkalluru/debug
+    env:
+      - name: URL
+        valueFrom:
+          configMapKeyRef:
+            name: cm-demo           # The ConfigMap this value comes from.
+            key: URL # The key to fetch.
+
+
+
+
+
+
+
