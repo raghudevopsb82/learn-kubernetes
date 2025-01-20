@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: example
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rbac-demo
+spec:
+  serviceAccountName: example
+  containers:
+  - name: debug
+    image: rkalluru/debug
+
+
+
+
+
+
