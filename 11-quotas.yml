@@ -16,3 +16,58 @@ spec:
     secrets: "10"
     services: "10"
     services.loadbalancers: "2"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx1
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.19
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx2
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.19
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx3
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.19
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx4
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.19
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx5
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.19
+    ports:
+    - containerPort: 80
