@@ -25,6 +25,13 @@ spec:
   containers:
   - name: nginx
     image: nginx:1.19
+    resources:
+      requests:
+        memory: "4Mi"
+        cpu: "20m"
+      limits:
+        memory: "8Mi"
+        cpu: "40m"
     ports:
     - containerPort: 80
 ---
@@ -36,6 +43,13 @@ spec:
   containers:
   - name: nginx
     image: nginx:1.19
+    resources:
+      requests:
+        memory: "4Mi"
+        cpu: "20m"
+      limits:
+        memory: "8Mi"
+        cpu: "40m"
     ports:
     - containerPort: 80
 ---
@@ -47,6 +61,13 @@ spec:
   containers:
   - name: nginx
     image: nginx:1.19
+    resources:
+      requests:
+        memory: "4Mi"
+        cpu: "20m"
+      limits:
+        memory: "8Mi"
+        cpu: "40m"
     ports:
     - containerPort: 80
 ---
@@ -58,6 +79,13 @@ spec:
   containers:
   - name: nginx
     image: nginx:1.19
+    resources:
+      requests:
+        memory: "4Mi"
+        cpu: "20m"
+      limits:
+        memory: "8Mi"
+        cpu: "40m"
     ports:
     - containerPort: 80
 ---
@@ -69,5 +97,12 @@ spec:
   containers:
   - name: nginx
     image: nginx:1.19
+    resources:
+      requests:
+        memory: "4Mi"
+        cpu: "20m"
+      limits:
+        memory: "8Mi"
+        cpu: "40m"
     ports:
     - containerPort: 80
