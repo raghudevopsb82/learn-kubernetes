@@ -33,7 +33,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: example
-  namespace: kube-system
+  namespace: default
 roleRef:
   # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role #this must be Role or ClusterRole
