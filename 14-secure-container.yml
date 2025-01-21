@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    nname: example
+  name: example
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug1-13-np
+  namespace: example
+  labels:
+    podName: debug1-13-np
+spec:
+  containers:
+  - name: debug
+    image: rkalluru/debug
+    securityContext:
+      allowPrivilegeEscalation: false
