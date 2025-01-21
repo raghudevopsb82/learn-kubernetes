@@ -36,6 +36,17 @@ spec:
     image: rkalluru/debug
 
 
-## With Network Policy restricting from same namespace
+## With Network Policy restricting from same namespace,
+# Example: Restrict everything
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-ingress
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+
 
 
