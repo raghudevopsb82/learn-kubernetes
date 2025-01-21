@@ -16,9 +16,13 @@ metadata:
 spec:
   containers:
   - name: debug
-    image: rkalluru/debug
+    image: rkalluru/debug:latest
     securityContext:
       allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      runAsUser: 10000
+      runAsGroup: 10000
+      runAsNonRoot: true
       capabilities:
         drop: ALL
 
