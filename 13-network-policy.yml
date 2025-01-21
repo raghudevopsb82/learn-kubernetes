@@ -28,6 +28,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: debug-13-np
+  labels:
+    podName: debug-13-np
 spec:
   containers:
   - name: debug
