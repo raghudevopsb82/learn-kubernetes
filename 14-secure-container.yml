@@ -19,3 +19,7 @@ spec:
     image: rkalluru/debug
     securityContext:
       allowPrivilegeEscalation: false
+      capabilities:
+        drop: ALL
+
+
