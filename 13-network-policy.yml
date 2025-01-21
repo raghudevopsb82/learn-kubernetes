@@ -2,13 +2,27 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-13--no-np
+  name: nginx-13-no-np
+  labels:
+    podName: nginx-13-no-np
 spec:
   containers:
   - name: nginx
     image: nginx:1.19
     ports:
     - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-13-no-np
+spec:
+  selector:
+    podName: nginx-13-no-np
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
 ---
 apiVersion: v1
 kind: Pod
