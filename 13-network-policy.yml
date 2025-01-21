@@ -5,6 +5,7 @@ metadata:
   name: nginx-13-np
   labels:
     podName: nginx-13-np
+    appName: nginx
 spec:
   containers:
   - name: nginx
@@ -34,19 +35,48 @@ spec:
   containers:
   - name: debug
     image: rkalluru/debug
-
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug1-13-np
+  labels:
+    podName: debug1-13-np
+spec:
+  containers:
+  - name: debug
+    image: rkalluru/debug
 
 ## With Network Policy restricting from same namespace,
 # Example: Restrict everything
 ---
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: default-deny-ingress
+# spec:
+#   podSelector: {}
+#   policyTypes:
+#   - Ingress
+
+# Example: Allow only debug1
+---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: default-deny-ingress
+  name: allow-debug1
 spec:
-  podSelector: {}
+  podSelector:
+    matchLabels:
+      appName: nginx
   policyTypes:
   - Ingress
-
-
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          podName: debug1-13-np
+    ports:
+    - protocol: TCP
+      port: 80
 
