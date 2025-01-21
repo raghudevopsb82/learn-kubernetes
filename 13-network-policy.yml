@@ -73,6 +73,9 @@ spec:
   - Ingress
   ingress:
   - from:
+    - namespaceSelector:
+        matchLabels:
+          nname: example
     - podSelector:
         matchLabels:
           podName: debug1-13-np
