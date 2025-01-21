@@ -24,6 +24,7 @@ spec:
       runAsGroup: 10000
       runAsNonRoot: true
       capabilities:
-        drop: ALL
+        drop:
+          - ALL
 
 
