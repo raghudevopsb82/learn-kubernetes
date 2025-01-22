@@ -22,4 +22,12 @@ spec:
       containers:
       - name: hpa
         image: rkalluru/debug:hpa
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 200m
+            memory: 150Mi
+
 
