@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: topology-20
+  labels:
+    app: nginx
+    name: topology-20
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+      name: topology-20
+  strategy:
+    rollingUpdate:
+      maxSurge: 1%
+      maxUnavailable: 1%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx
+        name: topology-20
+    spec:
+      containers:
+      - name: noude-autoscaler
+        image: rkalluru/debug
