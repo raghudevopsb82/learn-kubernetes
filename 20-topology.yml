@@ -24,8 +24,8 @@ spec:
     spec:
       topologySpreadConstraints:
         - maxSkew: 1
-          minDomains: 0
-          topologyKey: topology.kubernetes.io
+          minDomains: 1
+          topologyKey: disktype
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
