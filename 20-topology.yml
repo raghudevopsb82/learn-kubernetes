@@ -23,7 +23,7 @@ spec:
         name: topology-20
     spec:
       topologySpreadConstraints:
-        - maxSkew: 1
+        - maxSkew: 0
           minDomains: 1
           topologyKey: topology.kubernetes.io
           whenUnsatisfiable: DoNotSchedule
