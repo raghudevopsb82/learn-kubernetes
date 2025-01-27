@@ -1,3 +1,9 @@
+# git clone https://github.com/kubernetes/autoscaler.git
+# cd autoscaler/vertical-pod-autoscaler
+# bash ./pkg/admission-controller/gencerts.sh
+# bash ./hack/vpa-up.sh
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
