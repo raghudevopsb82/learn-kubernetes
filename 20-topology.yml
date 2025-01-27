@@ -27,8 +27,9 @@ spec:
           minDomains: 1
           topologyKey: topology.kubernetes.io
           whenUnsatisfiable: DoNotSchedule
-          labelSelector: name
-          #matchLabelKeys: <list> # optional; beta since v1.27
+          labelSelector:
+            matchLabels:
+              name: topology-20
           nodeAffinityPolicy: Ignore # optional; beta since v1.26
           nodeTaintsPolicy: Ignore # optional; beta since v1.2
       containers:
