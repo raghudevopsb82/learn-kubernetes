@@ -10,6 +10,22 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+spec:
+  volumes:
+    - name: demo-pvc
+      persistentVolumeClaim:
+        claimName: demo-pvc
+  containers:
+    - name: debug
+      image: rkalluru/debug
+      volumeMounts:
+        - mountPath: "/data"
+          name: demo-pvc
 
 
 
