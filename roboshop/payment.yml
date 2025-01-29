@@ -7,9 +7,9 @@ data:
   "AMQP_HOST": "rabbitmq-dev.azdevopsb82.online"
   "AMQP_PASS": "roboshop123"
   "AMQP_USER": "roboshop"
-  "CART_HOST": "cart-dev.azdevopsb82.online"
+  "CART_HOST": cart
   "CART_PORT": "8080"
-  "USER_HOST": "user-dev.azdevopsb82.online"
+  "USER_HOST": user
   "USER_PORT": "8080"
 ---
 apiVersion: apps/v1

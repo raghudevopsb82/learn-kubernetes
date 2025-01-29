@@ -5,7 +5,7 @@ metadata:
   name: shipping
 data:
   "APP_GIT_URL": "https://github.com/roboshop-devops-project-v3/shipping"
-  "CART_ENDPOINT": "cart-dev.azdevopsb82.online:8080"
+  "CART_ENDPOINT": "cart:8080"
   "DB_HOST": "mysql-dev.azdevopsb82.online"
   "DB_PASS": "RoboShop@1"
   "DB_TYPE": "mysql"

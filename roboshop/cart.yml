@@ -5,7 +5,7 @@ metadata:
   name: cart
 data:
   REDIS_HOST: redis-dev.azdevopsb82.online
-  CATALOGUE_HOST: catalogue-dev.azdevopsb82.online
+  CATALOGUE_HOST: catalogue
   CATALOGUE_PORT: "8080"
 ---
 apiVersion: apps/v1
