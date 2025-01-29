@@ -1,0 +1,67 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalogue
+data:
+  "APP_GIT_URL": "https://github.com/roboshop-devops-project-v3/catalogue"
+  "DB_HOST": "mongodb-dev.azdevopsb82.online"
+  "DB_TYPE": "mongo"
+  "MONGO": "true"
+  "MONGO_URL": "mongodb://mongodb-dev.azdevopsb82.online:27017/catalogue"
+  "SCHEMA_FILE": "db/master-data.js"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogue
+  labels:
+    app: catalogue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalogue
+  template:
+    metadata:
+      labels:
+        app: catalogue
+    spec:
+      containers:
+      - name: catalogue
+        image: public.ecr.aws/w8x4g9h7/roboshop-v3/catalogue
+        ports:
+        - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: catalogue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue
+spec:
+  selector:
+    app: catalogue
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: catalogue-schema
+spec:
+  template:
+    spec:
+      containers:
+      - name: catalogue-schema
+        image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+        envFrom:
+          - configMapRef:
+              name: catalogue
+      restartPolicy: Never
+  backoffLimit: 1
+
+

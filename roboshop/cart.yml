@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cart
+data:
+  REDIS_HOST: redis-dev.azdevopsb82.online
+  CATALOGUE_HOST: catalogue-dev.azdevopsb82.online
+  CATALOGUE_PORT: "8080"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart
+  labels:
+    app: cart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels:
+        app: cart
+    spec:
+      containers:
+      - name: cart
+        image: public.ecr.aws/w8x4g9h7/roboshop-v3/cart
+        ports:
+        - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: cart
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cart
+spec:
+  selector:
+    app: cart
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+
+
+
