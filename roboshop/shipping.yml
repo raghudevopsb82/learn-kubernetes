@@ -1,15 +1,30 @@
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: shipping
+# data:
+#   "APP_GIT_URL": "https://github.com/roboshop-devops-project-v3/shipping"
+#   "CART_ENDPOINT": "cart:8080"
+#   "DB_HOST": "mysql-dev.azdevopsb82.online"
+#   "DB_PASS": "RoboShop@1"
+#   "DB_TYPE": "mysql"
+#   "DB_USER": "root"
 ---
-apiVersion: v1
-kind: ConfigMap
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
 metadata:
-  name: shipping
-data:
-  "APP_GIT_URL": "https://github.com/roboshop-devops-project-v3/shipping"
-  "CART_ENDPOINT": "cart:8080"
-  "DB_HOST": "mysql-dev.azdevopsb82.online"
-  "DB_PASS": "RoboShop@1"
-  "DB_TYPE": "mysql"
-  "DB_USER": "root"
+  name: cart
+spec:
+  refreshInterval: "5s"
+  secretStoreRef:
+    name: vault-backend
+    kind: SecretStore
+  target:
+    name: shipping
+  dataFrom:
+  - extract:
+      key: shipping
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,7 +48,7 @@ spec:
         ports:
         - containerPort: 8080
         envFrom:
-          - configMapRef:
+          - secretRef:
               name: shipping
 ---
 apiVersion: v1
@@ -62,7 +77,7 @@ spec:
           - name: SCHEMA_FILE
             value: "db/app-user.sql"
         envFrom:
-          - configMapRef:
+          - secretRef:
               name: shipping
       restartPolicy: Never
   backoffLimit: 1
@@ -81,7 +96,7 @@ spec:
           - name: SCHEMA_FILE
             value: "db/schema.sql"
         envFrom:
-          - configMapRef:
+          - secretRef:
               name: shipping
       restartPolicy: Never
   backoffLimit: 1
@@ -100,7 +115,7 @@ spec:
           - name: SCHEMA_FILE
             value: "db/master-data.sql"
         envFrom:
-          - configMapRef:
+          - secretRef:
               name: shipping
       restartPolicy: Never
   backoffLimit: 1
