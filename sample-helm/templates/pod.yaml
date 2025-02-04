@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Values.podName }}
+spec:
+  containers:
+  - name: nginx
+    image: {{ .Values.image }}
+    ports:
+    - containerPort: 80
