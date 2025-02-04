@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: {{ .Values.image }}
+    image: {{ $.Values.image }}
     ports:
     - containerPort: 80
 {{- end }}
