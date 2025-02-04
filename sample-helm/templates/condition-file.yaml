@@ -1,4 +1,4 @@
-{{ if eq .Values.debugPod.enabled }}
+{{ if .Values.debugPod.enabled }}
 apiVersion: v1
 kind: Pod
 metadata:
