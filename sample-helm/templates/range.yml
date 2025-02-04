@@ -10,5 +10,4 @@ spec:
     image: {{ $.Values.image }}
     ports:
     - containerPort: 80
----
 {{ end }}
