@@ -1,3 +1,4 @@
+{{ if .Values.debugPod.enabled }}
 {{ range .Values.extraPods }}
 ---
 apiVersion: v1
@@ -9,4 +10,6 @@ spec:
   - name: nginx
     image: {{ $.Values.image }}
     ports:
-    - containerPort: 80 {{ end }}
+    - containerPort: 80
+{{ end }}
+{{ end }}
