@@ -10,6 +10,6 @@ spec:
   - name: nginx
     image: {{ $.Values.image }}
     ports:
-    - containerPort: {{ .port }
+    - containerPort: {{ .port }}
 {{- end }}
 {{- end }}
