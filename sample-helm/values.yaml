@@ -4,8 +4,8 @@ debugPod:
   enabled: true
 
 favorite:
-  - drink: coke
-    food: fries
+   drink: coke
+   food: fries
 
 
 
