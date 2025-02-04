@@ -1,0 +1,12 @@
+{{- range .Values.extraPods }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: - {{ . | title | quote }}
+spec:
+  containers:
+  - name: nginx
+    image: {{ .Values.image }}
+    ports:
+    - containerPort: 80
+{{- end }}
