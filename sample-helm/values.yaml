@@ -8,8 +8,11 @@ favorite:
    food: fries
 
 extraPods:
-  - nginx1
-  - nginx2
+  - name: nginx1
+    port: 100
+  - name: nginx2
+    port: 200
+
 
 
 
