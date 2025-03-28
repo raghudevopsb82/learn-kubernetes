@@ -101,6 +101,12 @@ spec:
     to:
     - operation:
         methods: ["GET"]
-        paths: ["/info*"]
-
+        paths: ["/"]
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: default-deny
+  namespace: example
+spec: {}
 
