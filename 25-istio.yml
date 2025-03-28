@@ -1,0 +1,46 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: example
+  labels:
+    istio-injection: enabled
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-method
+  namespace: example
+  labels:
+    app: http-method
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http-method
+  template:
+    metadata:
+      labels:
+        app: http-method
+    spec:
+      containers:
+      - name: http-method
+        image: rkalluru/http-methods
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-method
+  namespace: example
+spec:
+  selector:
+    app: http-method
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 80
+---
+
+

@@ -63,23 +63,5 @@ spec:
       - name: debug
         image: rkalluru/debug
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: kiali
-  namespace: istio-system
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: kiali-dev.azdevopsb82.online
-    http:
-      paths:
-      - backend:
-          service:
-            name: kiali
-            port:
-              number: 20001
-        path: /
-        pathType: Prefix
+
 
