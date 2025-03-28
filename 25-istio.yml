@@ -12,6 +12,12 @@ metadata:
   name: http-method
   namespace: example
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: debug
+  namespace: example
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -66,8 +72,43 @@ spec:
       labels:
         app: debug
     spec:
+      serviceAccountName: debug
       containers:
       - name: debug
         image: rkalluru/debug
+
+---
+apiVersion: security.istio.io/v1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: example
+spec:
+  mtls:
+    mode: STRICT
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: get-allow
+  namespace: example
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/default/sa/sleep"]
+    - source:
+        namespaces: ["test"]
+    to:
+    - operation:
+        methods: ["GET"]
+        paths: ["/info*"]
+    - operation:
+        methods: ["POST"]
+        paths: ["/data"]
+    when:
+    - key: request.auth.claims[iss]
+      values: ["https://accounts.google.com"]
 
 
