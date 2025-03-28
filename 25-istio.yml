@@ -10,6 +10,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: http-method
+  namespace: example
 ---
 apiVersion: apps/v1
 kind: Deployment
