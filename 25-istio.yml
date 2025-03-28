@@ -19,7 +19,6 @@ metadata:
   labels:
     app: http-method
 spec:
-  serviceAccountName: http-method
   replicas: 1
   selector:
     matchLabels:
@@ -29,6 +28,7 @@ spec:
       labels:
         app: http-method
     spec:
+      serviceAccountName: http-method
       containers:
       - name: http-method
         image: rkalluru/http-methods
