@@ -6,6 +6,11 @@ metadata:
   labels:
     istio-injection: enabled
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: http-method
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,6 +19,7 @@ metadata:
   labels:
     app: http-method
 spec:
+  serviceAccountName: http-method
   replicas: 1
   selector:
     matchLabels:
@@ -42,5 +48,25 @@ spec:
       port: 3000
       targetPort: 80
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug
+  namespace: example
+  labels:
+    app: debug
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug
+  template:
+    metadata:
+      labels:
+        app: debug
+    spec:
+      containers:
+      - name: debug
+        image: rkalluru/debug
 
 
